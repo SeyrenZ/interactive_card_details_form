@@ -124,11 +124,11 @@ const InputForm = () => {
   // ========================================================================= //
   return (
     <>
-      <div className="flex items-center gap-x-32">
+      <div className="flex sm:flex-col sm:justify-center items-center gap-x-32 sm:gap-y-5">
         {/* card */}
         <div className="flex flex-col gap-y-12">
           {/* card details front */}
-          <div className="w-[447px] h-[245px] p-8 py-7 bg-cardFront bg-no-repeat flex flex-col justify-between">
+          <div className="w-[447px] h-[245px] p-8 py-7 bg-cardFront bg-no-repeat flex flex-col justify-between sm:hidden">
             <CardLogo />
             <div className="flex flex-col gap-y-5">
               <div className="tracking-widest text-[29px] font-medium text-white">
@@ -145,16 +145,33 @@ const InputForm = () => {
             </div>
           </div>
           {/* card details back */}
-          <div className="ml-24 w-[447px] h-[245px] bg-cardBack bg-no-repeat flex flex-col items-end justify-center">
-            <div className="mr-14 mb-1 text-md text-white font-medium tracking-widest">
+          <div className=" w-[447px] h-[245px] ml-24 sm:ml-10 sm:w-[330px] sm:h-[196px] sm:rounded-lg bg-cardBack bg-no-repeat sm:bg-cover flex flex-col items-end justify-center">
+            <div className="mr-14 mb-1 text-md sm:text-sm sm:mr-8 text-white font-medium tracking-widest">
               {!cardCvc ? "000" : cardCvc}
+            </div>
+          </div>
+          {/* card details front mobile */}
+          <div className="w-[447px] h-[245px] sm:w-[330px] sm:h-[196px] sm:mt-[-133px] p-8 py-7 sm:p-5 sm:py-6 rounded-lg bg-cardFront bg-no-repeat flex flex-col justify-between lg:hidden md:hidden">
+            <CardLogo />
+            <div className="flex flex-col gap-y-5">
+              <div className="tracking-widest text-[29px] sm:text-lg font-medium text-white">
+                {!creditCardNumber ? "0000 0000 0000 0000" : creditCardNumber}
+              </div>
+              <div className="flex justify-between">
+                <div className="tracking-widest text-sm sm:text-xs  text-white">
+                  {!cardUserName ? "Jane Applessed" : cardUserName}
+                </div>
+                <div className="tracking-widest text-sm sm:text-xs  text-white">
+                  {!dateMonth ? "00" : dateMonth}/{!dateYear ? "00" : dateYear}
+                </div>
+              </div>
             </div>
           </div>
         </div>
         {!formSubmitted ? (
           <form
             onSubmit={handleOnSubmit}
-            className="w-[400px] flex flex-col gap-y-12"
+            className="w-[400px] sm:w-full sm:p-7 flex flex-col gap-y-12 sm:gap-y-8"
           >
             {/* div 1 */}
             <div className="flex flex-col gap-y-6">
@@ -167,8 +184,10 @@ const InputForm = () => {
                   type="text"
                   value={cardUserName}
                   onChange={formatCardUserName}
+                  maxLength={21}
                   className="w-full h-12 p-4 border-2 rounded-lg border-[#dedddf] focus:outline-none focus:border-[#600594] font-normal text-lg "
                   placeholder="e.g. Jane Applessed"
+                  autoComplete="off"
                 />
                 {NameErrorMessage && (
                   <div className="text-red-500 text-sm">{NameErrorMessage}</div>
@@ -186,6 +205,7 @@ const InputForm = () => {
                   maxLength={19}
                   className="w-full h-12 p-4 border-2 rounded-lg border-[#dedddf] focus:outline-none focus:border-[#600594] font-normal text-lg "
                   placeholder="e.g. 1234 5678 9123 0000"
+                  autoComplete="off"
                 />
                 {NumberErrorMessage && (
                   <div className="text-red-500 text-sm">
@@ -208,6 +228,7 @@ const InputForm = () => {
                       className="w-[85px] h-12 p-4 border-2 rounded-lg border-[#dedddf] focus:outline-none focus:border-[#600594] font-normal text-lg "
                       placeholder="MM"
                       maxLength={2}
+                      autoComplete="off"
                     />
                     {/* to remove error message on chrome */}
                     <input className="hidden" disabled />
@@ -221,6 +242,7 @@ const InputForm = () => {
                       className="w-[85px] h-12 p-4 border-2 rounded-lg border-[#dedddf] focus:outline-none focus:border-[#600594] font-normal text-lg "
                       placeholder="YY"
                       maxLength={2}
+                      autoComplete="off"
                     />
                   </div>
                   {MonthYearErrorMessage && (
@@ -241,6 +263,7 @@ const InputForm = () => {
                     className="w-full h-12 p-4 border-2 rounded-lg border-[#dedddf] focus:outline-none focus:border-[#600594] font-normal text-lg "
                     placeholder="e.g. 123"
                     maxLength={3}
+                    autoComplete="off"
                   />
                   {CvcErrorMessage && (
                     <div className="text-red-500 text-sm">
@@ -260,7 +283,7 @@ const InputForm = () => {
           </form>
         ) : (
           //   thankyou message
-          <div className="w-[400px] flex flex-col justify-center items-center gap-y-10 ">
+          <div className="w-[400px] sm:w-[450px] sm:p-7 flex flex-col justify-center items-center gap-y-10 ">
             <CompleteLogo />
             <div className="flex flex-col items-center gap-y-5">
               <div className="text-3xl font-bold text-[#21092f] uppercase">
@@ -271,7 +294,7 @@ const InputForm = () => {
               </div>
             </div>
             <button
-              className="w-full h-14 rounded-lg bg-[#21092f] text-white font-medium tracking-wider"
+              className="w-[350px] h-14 rounded-lg bg-[#21092f] text-white font-medium tracking-wider"
               type="submit"
             >
               Continue
