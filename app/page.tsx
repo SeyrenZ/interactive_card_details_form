@@ -1,4 +1,4 @@
-import { Form, Submitted } from "@/components";
+import { Form } from "@/components";
 export default function Home() {
   return (
     <main className="">
