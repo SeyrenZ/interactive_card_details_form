@@ -190,7 +190,9 @@ const InputForm = () => {
                   autoComplete="off"
                 />
                 {NameErrorMessage && (
-                  <div className="text-red-500 text-sm">{NameErrorMessage}</div>
+                  <div className="text-red-500 text-sm sm:text-xs">
+                    {NameErrorMessage}
+                  </div>
                 )}
               </div>
               <div className="flex flex-col gap-y-2">
@@ -208,7 +210,7 @@ const InputForm = () => {
                   autoComplete="off"
                 />
                 {NumberErrorMessage && (
-                  <div className="text-red-500 text-sm">
+                  <div className="text-red-500 text-sm sm:text-xs">
                     {NumberErrorMessage}
                   </div>
                 )}
@@ -246,7 +248,7 @@ const InputForm = () => {
                     />
                   </div>
                   {MonthYearErrorMessage && (
-                    <div className="text-red-500 text-sm">
+                    <div className="text-red-500 text-sm sm:text-xs">
                       {MonthYearErrorMessage}
                     </div>
                   )}
@@ -266,7 +268,7 @@ const InputForm = () => {
                     autoComplete="off"
                   />
                   {CvcErrorMessage && (
-                    <div className="text-red-500 text-sm">
+                    <div className="text-red-500 text-sm sm:text-xs">
                       {CvcErrorMessage}
                     </div>
                   )}
